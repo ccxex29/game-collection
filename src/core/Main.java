@@ -17,6 +17,7 @@ public class Main {
 				mainSelector = 0;
 			}
 			sc.nextLine();
+			handleSelection(mainSelector);
 		}while(mainSelector != 3);
 		sc.close();
 	}
@@ -24,6 +25,19 @@ public class Main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		new Main();
+	}
+	
+	void handleSelection(int sel) {
+		switch (sel) {
+		case 1:
+			
+			break;
+		case 2:
+			
+			break;
+		default:
+			break;
+		}
 	}
 
 }
