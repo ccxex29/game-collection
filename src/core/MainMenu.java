@@ -12,7 +12,4 @@ public class MainMenu {
 		System.out.println("3. Exit");
 		System.out.print(">>> ");
 	}
-
-
-	
 }
