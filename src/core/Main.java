@@ -14,6 +14,7 @@ public class Main {
 				mainSelector = sc.nextInt();
 			} catch (Exception e) {
 				// TODO: handle exception
+				sc.nextLine();
 				mainSelector = 0;
 			}
 			sc.nextLine();
@@ -30,10 +31,10 @@ public class Main {
 	void handleSelection(int sel) {
 		switch (sel) {
 		case 1:
-			
+			(new RegLogin()).reglog();
 			break;
 		case 2:
-			
+			(new GamesMenu()).gamesMenu();
 			break;
 		default:
 			break;
