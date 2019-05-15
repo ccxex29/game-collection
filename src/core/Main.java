@@ -34,7 +34,7 @@ public class Main {
 			(new RegLogin()).reglog();
 			break;
 		case 2:
-			
+			(new GamesMenu()).getGames();
 			break;
 		default:
 			break;
