@@ -12,6 +12,7 @@ public class GamesMenu {
 		System.out.println("3. FooBar");
 		
 		System.out.println("0. Exit Selection Menu");
+		System.out.print(">>> ");
 	}
 	int selection() { // Selection on Register/Login
 		int selectionvar = 999;//variable to store user input
@@ -22,11 +23,10 @@ public class GamesMenu {
 				selectionvar = sc.nextInt();
 			}
 			catch (Exception e) {
-				sc.nextLine();
 				selectionvar = 999;
 			}
 			sc.nextLine();
-		} while(selectionvar > 3 && selectionvar < 0);
+		} while(selectionvar > 3 || selectionvar < 0);
 		return selectionvar;
 	}
 	void gamesMenu() {
