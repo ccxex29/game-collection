@@ -13,8 +13,6 @@ public class Main {
 			try {
 				mainSelector = sc.nextInt();
 			} catch (Exception e) {
-				// TODO: handle exception
-				sc.nextLine();
 				mainSelector = 0;
 			}
 			sc.nextLine();
