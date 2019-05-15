@@ -20,7 +20,6 @@ public class RegLogin {
 				selectionvar = sc.nextInt();
 			}
 			catch (Exception e) {
-				sc.nextLine();
 				selectionvar = 999;
 			}
 			sc.nextLine();
