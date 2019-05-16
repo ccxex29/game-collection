@@ -8,16 +8,15 @@ public class CaesarCipher {
 	private Scanner sc;
 	public CaesarCipher() {
 		// TODO Auto-generated constructor stub
-		sc.nextLine();
 		switch (selection()) {
-		case 1:
-			encryptMenu();
-			break;
-		case 2:
-			decryptMenu();
-			break;
-		default:
-			break;
+			case 1:
+				encryptMenu();
+				break;
+			case 2:
+				decryptMenu();
+				break;
+			default:
+				break;
 		}
 	}
 	
@@ -70,6 +69,5 @@ public class CaesarCipher {
 		System.out.println("2. Decrypt");
 		System.out.println("0. Back");
 		System.out.print(">>> ");
-		sc.nextLine();
 	}
 }
