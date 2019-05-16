@@ -1,6 +1,7 @@
 package core;
 
 import java.util.Scanner;
+import core.Games.*;
 
 public class GamesMenu {
 	private Scanner sc;
@@ -39,8 +40,16 @@ public class GamesMenu {
 	}
 	void gamesMenu() {
 		switch(selection()) {
-			case 1: break;
-			case 2: break;
+			case 1: new Reversi();
+					break;
+			case 2: (new CaesarCipher()).HelloWorld();
+					break;
+			case 3: new Morse();
+					break;
+			case 4: 
+					break;
+			case 5: 
+					break;
 		}
 	}
 }
