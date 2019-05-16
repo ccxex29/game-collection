@@ -1,5 +1,11 @@
 package core.Games;
 
-public class Morse {
+import java.util.Scanner;
 
+public class Morse {
+	private Scanner sc;
+	public Morse(){
+		
+	}
+	
 }

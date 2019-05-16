@@ -42,7 +42,7 @@ public class GamesMenu {
 		switch(selection()) {
 			case 1: new Reversi();
 					break;
-			case 2: (new CaesarCipher()).HelloWorld();
+			case 2: new CaesarCipher();
 					break;
 			case 3: new Morse();
 					break;
