@@ -3,9 +3,10 @@ package core;
 import java.util.Scanner;
 import core.Games.*;
 
-public class GamesMenu {
+public class GamesMenu{
 	private Scanner sc;
 	void getGames() {
+		new RefreshPage();
 		System.out.println("Game Selections");
 		System.out.println();
 		/*
@@ -39,17 +40,21 @@ public class GamesMenu {
 		return selectionvar;
 	}
 	void gamesMenu() {
-		switch(selection()) {
-			case 1: new Reversi();
-					break;
-			case 2: new CaesarCipher();
-					break;
-			case 3: new Morse();
-					break;
-			case 4: 
-					break;
-			case 5: 
-					break;
-		}
+		int sel = 0;
+		do {
+			sel = selection();
+			switch(sel) {
+				case 1: new Reversi();
+						break;
+				case 2: new CaesarCipher();
+						break;
+				case 3: new Morse();
+						break;
+				case 4: 
+						break;
+				case 5: 
+						break;
+			}
+		}while(sel != 0);
 	}
 }

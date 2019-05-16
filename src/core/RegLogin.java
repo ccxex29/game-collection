@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class RegLogin {
 	private Scanner sc;
 	void menuview() {
+		new RefreshPage();
 		System.out.println("Howdy!");
 		System.out.println("1. Register");
 		System.out.println("2. Login");

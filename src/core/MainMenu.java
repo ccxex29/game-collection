@@ -4,6 +4,7 @@ public class MainMenu {
 	
 	public MainMenu() {
 		// TODO Auto-generated constructor stub
+		new RefreshPage();
 		GameVersion gv = new GameVersion();
 		System.out.println("Game Collection Menu v" + gv.getVersion());
 		

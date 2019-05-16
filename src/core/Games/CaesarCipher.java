@@ -3,8 +3,9 @@ package core.Games;
 import java.util.Scanner;
 
 import core.Games.CaesarComponents.*;
+import core.RefreshPage;
 
-public class CaesarCipher {
+public class CaesarCipher{
 	private Scanner sc;
 	public CaesarCipher() {
 		// TODO Auto-generated constructor stub
@@ -24,6 +25,7 @@ public class CaesarCipher {
 		int shifts = -1;
 		sc = new Scanner(System.in);
 		do {
+			new RefreshPage();
 			System.out.println("How many shifts? (Maximum 25)");
 			try {
 				shifts = sc.nextInt(); //prompts user for caesar cipher encryption shift
@@ -64,6 +66,7 @@ public class CaesarCipher {
 	}
 	
 	private void caesarMenu() {
+		new RefreshPage();
 		System.out.println("Caesar Cipher Encrypt/Decrypt Code");
 		System.out.println("1. Encrypt");
 		System.out.println("2. Decrypt");
