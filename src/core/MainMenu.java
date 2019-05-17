@@ -6,7 +6,7 @@ public class MainMenu {
 		// TODO Auto-generated constructor stub
 		new RefreshPage();
 		GameVersion gv = new GameVersion();
-		String gameMenuTitle = ("Game Collection Menu v" + gv.getVersion());
+		String gameMenuTitle = ("Game Collection Menu" + " v" + gv.getVersion() + " | " + "Available Threads: " + Runtime.getRuntime().availableProcessors());
 		System.out.println(gameMenuTitle);
 		for (int i = 0; i < gameMenuTitle.length(); i++) {
 			System.out.print("=");
