@@ -1,12 +1,23 @@
+/*
+ * Object Oriented Programming Project LK01
+ * Theme:
+ * Game Collection
+ * Team:
+ * Louis Raymond (2201849535)
+ * Christina Angelia (2201728004)
+ * Lecturer : 
+ * Livia Ashianti (D5358)
+ */
 package core;
 
+import static core.Main.*;
+
 public class MainMenu {
-	
 	public MainMenu() {
 		// TODO Auto-generated constructor stub
 		new RefreshPage();
 		GameVersion gv = new GameVersion();
-		String gameMenuTitle = ("Game Collection Menu" + " v" + gv.getVersion() + " | " + "Available Threads: " + Runtime.getRuntime().availableProcessors());
+		String gameMenuTitle = ("Game Collection Menu" + " v" + gv.getVersion() + " | " + "Available Threads: " + availableThreads);
 		System.out.println(gameMenuTitle);
 		for (int i = 0; i < gameMenuTitle.length(); i++) {
 			System.out.print("=");

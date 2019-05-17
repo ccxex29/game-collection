@@ -1,3 +1,13 @@
+/*
+ * Object Oriented Programming Project LK01
+ * Theme:
+ * Game Collection
+ * Team:
+ * Louis Raymond (2201849535)
+ * Christina Angelia (2201728004)
+ * Lecturer : 
+ * Livia Ashianti (D5358)
+ */
 package core;
 
 import java.util.Scanner;
@@ -7,7 +17,11 @@ public class GamesMenu{
 	private Scanner sc;
 	void getGames() {
 		new RefreshPage();
-		System.out.println("Game Selections");
+		String gameselTitle = "Game Selections";
+		System.out.println(gameselTitle);
+		for (int i = 0; i < gameselTitle.length(); i++) {
+			System.out.print("=");
+		}
 		System.out.println();
 		/*
 		 * Game Blueprint:
@@ -19,7 +33,7 @@ public class GamesMenu{
 		// Show TUI Supported or not
 		System.out.println("2. Caesar Cipher");
 		System.out.println("3. Morse Code");
-		System.out.println("4. FooBar");
+		System.out.println("4. Print Threads");
 		
 		System.out.println("0. Exit Selection Menu");
 		System.out.print(">>> ");
@@ -50,7 +64,7 @@ public class GamesMenu{
 						break;
 				case 3: new Morse();
 						break;
-				case 4: 
+				case 4: new PrintThreads();
 						break;
 				case 5: 
 						break;
