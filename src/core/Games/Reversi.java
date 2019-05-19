@@ -11,5 +11,7 @@
 package core.Games;
 
 public class Reversi {
-	
+	public Reversi() {
+		
+	}
 }
