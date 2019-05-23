@@ -36,6 +36,9 @@ public class Main {
 	}
 
 	public static void main(String[] args) {
+		/* Initialize Vector User */
+		
+		/* Main Constructor call */
 		new Main();
 	}
 	

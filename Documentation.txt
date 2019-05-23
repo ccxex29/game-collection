@@ -1,0 +1,11 @@
+===============================================
+=============== Game Collection ===============
+=== by  Louis Raymond and Christina Angelia ===
+===============================================
+
+---------------- DOCUMENTATION ----------------
+MENU SECTION
+1. REGISTER/LOGIN
+2. PLAY GAMES
+ 
+Menu Section -> Shows Menu until the program is terminated manually by user or system signal.

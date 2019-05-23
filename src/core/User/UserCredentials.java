@@ -1,7 +1,7 @@
 package core.User;
 
 public class UserCredentials {
-	Integer RegIDTemp = 0; // --> Registration ID will use hashing technique. The Registration ID will consists of 8 maximum digits
+	
 	String RegID = ""; 
 					/*
 					 * Registration ID based on RegIDTemp calculation. 64 Arrays with LinkedList and Randomized Numbers.
@@ -12,9 +12,15 @@ public class UserCredentials {
 					 *          |_____________Array Index (2 digits, Starting from 1)
 					 */
 	String Name = ""; // --> Username can be anything supported by the program
-	
+	String Email = "";
 	public UserCredentials() {
 		
+	}
+	public UserCredentials(String regID, String name, String email) {
+		super();
+		RegID = regID;
+		Name = name;
+		Email = email;
 	}
 	
 	
