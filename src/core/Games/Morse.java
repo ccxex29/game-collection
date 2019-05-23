@@ -15,7 +15,8 @@ import java.util.Scanner;
 public class Morse {
 	private Scanner sc;
 	public Morse(){
-		
+		sc = new Scanner(System.in);
+		sc.nextLine();
 	}
 	
 }

@@ -12,6 +12,8 @@ package core;
 
 import java.util.Scanner;
 
+import core.User.*;
+
 public class RegLogin {
 	private Scanner sc;
 	void menuview() {
@@ -40,8 +42,10 @@ public class RegLogin {
 	
 	void reglog() {
 		switch(selection()) {
-			case 1: break;
-			case 2: break;
+			case 1: new RegistUser();
+					break;
+			case 2: new LoginUser();
+					break;
 		}
 	}
 }
