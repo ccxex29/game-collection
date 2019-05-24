@@ -19,7 +19,7 @@ public class Morse {
 	private String kata;
 	public Morse(){
 		sc = new Scanner(System.in);
-		sc.nextLine();
+	
 		ViewMenu();
 	}
 	public void ViewMenu()

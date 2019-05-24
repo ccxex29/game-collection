@@ -125,6 +125,50 @@ public class Main {
 			{
 				encrypt= encrypt+"--.. ";
 			}
+			if(kata.charAt(i)=='1')
+			{
+				encrypt= encrypt+".---- ";
+			}
+			if(kata.charAt(i)=='2')
+			{
+				encrypt= encrypt+"..--- ";
+			}
+			if(kata.charAt(i)=='3')
+			{
+				encrypt= encrypt+"...-- ";
+			}
+			if(kata.charAt(i)=='4')
+			{
+				encrypt= encrypt+"....- ";
+			}
+			if(kata.charAt(i)=='5')
+			{
+				encrypt= encrypt+"..... ";
+			}
+			if(kata.charAt(i)=='6')
+			{
+				encrypt= encrypt+"-.... ";
+			}
+			if(kata.charAt(i)=='7')
+			{
+				encrypt= encrypt+"--... ";
+			}
+			if(kata.charAt(i)=='8')
+			{
+				encrypt= encrypt+"---.. ";
+			}
+			if(kata.charAt(i)=='9')
+			{
+				encrypt= encrypt+"----. ";
+			}
+			if(kata.charAt(i)=='0')
+			{
+				encrypt= encrypt+"----- ";
+			}
+			if(kata.charAt(i)==' ')
+			{
+				encrypt= encrypt+" ";
+			}
 		}
 		System.out.println(encrypt);
 		sc.nextLine();
