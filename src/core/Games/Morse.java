@@ -12,11 +12,29 @@ package core.Games;
 
 import java.util.Scanner;
 
+import core.Games.MorseComponents.Main;
+
 public class Morse {
 	private Scanner sc;
+	private String kata;
 	public Morse(){
 		sc = new Scanner(System.in);
-		sc.nextLine();
+	
+		ViewMenu();
 	}
+	public void ViewMenu()
+	{
+		System.out.println("Morse encrypt");
+		do
+		{
+			System.out.println("Insert String[1-100 word(s)]: ");
+			kata = sc.nextLine();
+		}
+		while(kata.length()<1||kata.length()>100);
+		new Main(kata);
+		
+		
+	}
+	
 	
 }
