@@ -24,11 +24,14 @@ public class Main {
 		sc = new Scanner(System.in); // assign sc variable to a new object of Scanner
 		do {
 			new MainMenu();
-			try {
+			try {								
 				mainSelector = sc.nextInt();
 			} catch (Exception e) {
 				mainSelector = 0;
 			}
+			/*
+			 * Minimalize Errors from improper input (Integer)
+			 */
 			sc.nextLine();
 			handleSelection(mainSelector);
 		}while(mainSelector != 3);
@@ -45,10 +48,10 @@ public class Main {
 	void handleSelection(int sel) { // Switch case function from Main()
 		switch (sel) {
 		case 1:
-			(new RegLogin()).reglog(); // core.RegLogin.reglog()
+			(new RegLogin()).reglog(); // core.RegLogin.reglog() -> Opens the function from a class which is responsible to registration and login
 			break;
 		case 2:
-			(new GamesMenu()).gamesMenu(); // core.GamesMenu.gamesMenu()
+			(new GamesMenu()).gamesMenu(); // core.GamesMenu.gamesMenu() -> Opens the function from a class which is responsible to games
 			break;
 		}
 	}

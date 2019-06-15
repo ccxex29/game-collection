@@ -64,7 +64,7 @@ public class GamesMenu{
 						break;
 				case 3: new Morse();
 						break;
-				case 4: new PrintThreads();
+				case 4: new SystemInfo();
 						break;
 				case 5: 
 						break;

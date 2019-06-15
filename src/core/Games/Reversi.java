@@ -9,9 +9,15 @@
  * Livia Ashianti (D5358)
  */
 package core.Games;
+import java.util.Scanner;
+
+import core.Games.ReversiComponents.*;
 
 public class Reversi {
+	private Scanner sc;
 	public Reversi() {
-		
+		sc = new Scanner(System.in);
+		new Main();
+		sc.nextLine();
 	}
 }
