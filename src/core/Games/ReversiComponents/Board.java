@@ -8,6 +8,7 @@
  * Lecturer : 
  * Livia Ashianti (D5358)
  */
+
 package core.Games.ReversiComponents;
 
 public interface Board {

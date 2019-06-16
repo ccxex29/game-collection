@@ -8,6 +8,7 @@
  * Lecturer : 
  * Livia Ashianti (D5358)
  */
+
 package core.Games;
 
 import java.util.Scanner;
@@ -17,18 +18,20 @@ import core.RefreshPage;
 
 public class CaesarCipher{
 	private Scanner sc;
+	int sel = 0;
 	public CaesarCipher() {
-		// TODO Auto-generated constructor stub
-		switch (selection()) {
-			case 1:
-				encryptMenu();
-				break;
-			case 2:
-				decryptMenu();
-				break;
-			default:
-				break;
-		}
+		do {
+			switch (sel = selection()) {
+				case 1:
+					encryptMenu();
+					break;
+				case 2:
+					decryptMenu();
+					break;
+				default:
+					break;
+			}
+		}while(sel != 0);
 	}
 	
 	private void encryptMenu() {
@@ -36,12 +39,11 @@ public class CaesarCipher{
 		sc = new Scanner(System.in);
 		do {
 			new RefreshPage();
-			System.out.println("How many shifts? (Maximum 25)");
+			System.out.print("How many shifts? (Maximum 25) : ");
 			try {
 				shifts = sc.nextInt(); //prompts user for caesar cipher encryption shift
 			} 
 			catch (Exception e) {
-				// TODO: handle exception
 				shifts = -1; // Use -1 as default value of shift
 			}
 			finally {
@@ -49,15 +51,15 @@ public class CaesarCipher{
 			}
 		} while (shifts == -1 || shifts > 25); // Ignore negative value and value more than 25, Let 0 quit the shift menu
 		if (shifts != 0)
-			new Main(shifts); //Pass many shifts as parameter
+			new Encrypt(shifts); //Pass many shifts as parameter
 	}
 	
 	private void decryptMenu() {
-		
+			new Decrypt();
 	}
 	
 	private int selection() {
-		int selection = 999;
+		int selection = -1;
 		sc = new Scanner(System.in);
 		do {
 			caesarMenu();
@@ -65,8 +67,7 @@ public class CaesarCipher{
 				selection = sc.nextInt();
 			} 
 			catch (Exception e) {
-				// TODO: handle exception
-				selection = 999;
+				selection = -1;
 			}
 			finally {
 				sc.nextLine();

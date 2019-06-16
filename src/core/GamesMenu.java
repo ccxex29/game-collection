@@ -8,6 +8,7 @@
  * Lecturer : 
  * Livia Ashianti (D5358)
  */
+
 package core;
 
 import java.util.Scanner;
@@ -33,7 +34,8 @@ public class GamesMenu{
 		// Show TUI Supported or not
 		System.out.println("2. Caesar Cipher");
 		System.out.println("3. Morse Code");
-		System.out.println("4. Print Threads");
+		System.out.println("4. ------------");
+		System.out.println("5. System Info");
 		
 		System.out.println("0. Exit Selection Menu");
 		System.out.print(">>> ");
@@ -50,7 +52,7 @@ public class GamesMenu{
 				selectionvar = 999;
 			}
 			sc.nextLine();
-		} while(selectionvar > 4 || selectionvar < 0);
+		} while(selectionvar > 5 || selectionvar < 0);
 		return selectionvar;
 	}
 	void gamesMenu() {
@@ -64,9 +66,9 @@ public class GamesMenu{
 						break;
 				case 3: new Morse();
 						break;
-				case 4: new SystemInfo();
+				case 4: 
 						break;
-				case 5: 
+				case 5: new SystemInfo();
 						break;
 			}
 		}while(sel != 0);

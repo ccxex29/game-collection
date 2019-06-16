@@ -8,6 +8,7 @@
  * Lecturer : 
  * Livia Ashianti (D5358)
  */
+
 package core.Games.ReversiComponents;
 
 import java.util.Scanner;
@@ -47,15 +48,16 @@ public class Main implements Board{
 			// None  = 0
 			// Black = 1
 			// White = 2
+			// Undetermined = 9
 		//   A B C D E F G H
-			{0,0,0,0,0,0,0,0}, // 1
-			{0,0,0,0,0,0,0,0}, // 2
-			{0,0,0,0,0,0,0,0}, // 3
-			{0,1,2,0,2,1,0,0}, // 4
-			{0,0,0,1,2,0,0,0}, // 5
-			{0,0,0,0,0,0,0,0}, // 6
-			{0,0,0,0,0,0,0,0}, // 7
-			{0,0,0,0,0,0,0,0}, // 8
+			{9,9,9,9,9,9,9,9}, // 1
+			{9,9,9,9,9,9,9,9}, // 2
+			{9,9,9,9,9,9,9,9}, // 3
+			{9,9,9,9,9,9,9,9}, // 4
+			{9,9,9,9,9,9,9,9}, // 5
+			{9,9,9,9,9,9,9,9}, // 6
+			{9,9,9,9,9,9,9,9}, // 7
+			{9,9,9,9,9,9,9,9}, // 8
 	};
 	
 	private Integer [][] boardGame = {
@@ -80,8 +82,10 @@ public class Main implements Board{
 		sc = new Scanner (System.in);
 		if (mode == 1)
 			boardGame = StartGame;
-		else
-			boardGame = CustomGame;
+		else {
+			if (architect())
+				boardGame = CustomGame;
+		}
 		whiteMoves = 0;
 		blackMoves = 0;
 		
@@ -91,43 +95,44 @@ public class Main implements Board{
 		Boolean isValid = false;
 		int x = 0;
 		int y = 0;
-		do {
+		if (mode == 1 || CustomGame[7][7] != 9) {
 			do {
-				new RefreshPage();
-				haveZero = board();
-				System.out.print(">>> ");
-				if (haveZero) {
-					inputReversi = sc.nextLine();
-					isValid = validityCheck(inputReversi);
-					if (!isValid && !inputReversi.toLowerCase().equals("invert")) {
-						System.out.println("Illegal input or move!");
-						sc.nextLine();
+				do {
+					new RefreshPage();
+					haveZero = board();
+					System.out.print(">>> ");
+					if (haveZero) {
+						inputReversi = sc.nextLine();
+						isValid = validityCheck(inputReversi);
+						if (!isValid && !inputReversi.toLowerCase().equals("invert")) {
+							System.out.println("Illegal input or move!");
+							sc.nextLine();
+						}
+						if (inputReversi.toLowerCase().equals("invert")) {
+							blackDisk ^= whiteDisk;
+							whiteDisk ^= blackDisk;
+							blackDisk ^= whiteDisk;
+						}
 					}
-					if (inputReversi.toLowerCase().equals("invert")) {
-						blackDisk ^= whiteDisk;
-						whiteDisk ^= blackDisk;
-						blackDisk ^= whiteDisk;
+				}while (inputReversi != "0" && !isValid && haveZero); // validity check 
+				if (!inputReversi.equals("0")) {
+					if (inputReversi.charAt(0) > 96)
+						x = (int)(inputReversi.charAt(0)-97);
+					else
+						x = (int)(inputReversi.charAt(0)-65);
+					y = (int)(inputReversi.charAt(1)-49);
+					if (turn) {
+						boardGame[y][x] = 2;
+						whiteMoves++;
 					}
+					else {
+						boardGame[y][x] = 1;
+						blackMoves++;
+					}
+					turn = !turn; // Flips the turn
 				}
-			}while (inputReversi != "0" && !isValid && haveZero); // validity check 
-			if (!inputReversi.equals("0")) {
-				if (inputReversi.charAt(0) > 96)
-					x = (int)(inputReversi.charAt(0)-97);
-				else
-					x = (int)(inputReversi.charAt(0)-65);
-				y = (int)(inputReversi.charAt(1)-49);
-				if (turn) {
-					boardGame[y][x] = 2;
-					whiteMoves++;
-				}
-				else {
-					boardGame[y][x] = 1;
-					blackMoves++;
-				}
-				turn = !turn; // Flips the turn
-			}
-		}while(!inputReversi.equals("0") && haveZero);
-		
+			}while(!inputReversi.equals("0") && haveZero);
+		}
 	}
 	
 	@Override
@@ -596,5 +601,100 @@ public class Main implements Board{
 		}
 		return "No Hint Available";
 	}
+	
+	private Boolean architect() {
+		String commandArchitect = "";
+		for (int i1 = 0; i1 < 8; i1++) {
+			for (int j1 = 0; j1 < 8; j1++) {
+				new RefreshPage();
+				TopBottom(true);
+				System.out.println();
+				for (int i = 0; i < 8; i++) {
+					System.out.print(i+1);
+					for (int j = 0; j < 8; j++) {
+						if (CustomGame[i][j] == 0) {
+							System.out.print("█");
+						}
+						else if (CustomGame[i][j] == 9)
+							System.out.print("?");
+						else if (CustomGame[i][j] == 1)
+							System.out.print(blackDisk);
+						else
+							System.out.print(whiteDisk);
+					}
+					System.out.print("#    ");
+					switch (i) {
+						case 1: System.out.printf("%-13s%c %c%c", "Currently editing", ':', j1+65, i1+49); break;
+						case 3: System.out.print("You are editing the custom Reversi Board!");break;
+						case 4: System.out.print("Enter \'c\' to undo last change");break;
+						case 5: System.out.print("Enter 0 for empty block, 1 for black disk, and 2 for white disk"); break; 
+						case 7: System.out.print("Enter \'exit\' to exit menu");
+					}
+					System.out.println();
+				}
+				TopBottom(false);
+				System.out.println();
+				System.out.print(">>> ");
+				commandArchitect = sc.nextLine();
+				if (commandArchitect.equals("exit")) {
+					return false;
+				} 
+				else if (commandArchitect.equals("c")){
+					if (i1 == 0 && j1 == 0) {
+						System.out.println("Cannot undo further");
+						if (j1 == 0) {
+							j1 = 7;
+							i1--;
+						}
+						else {
+							j1--;
+						}
+						sc.nextLine();
+					}
+					else if (j1 == 0) {
+						CustomGame[i1-1][7] = 9;
+						j1 = 6;
+						i1--;
+					}
+					else if (j1 == 1) {
+						CustomGame[i1][0] = 9;
+						j1 = 7;
+						i1--;
+					}
+					else {
+						CustomGame[i1][j1-1] = 9;
+						j1-=2;
+					}
+				}
+				else if (commandArchitect.equals("0"))
+					CustomGame[i1][j1] = 0;
+				else if (commandArchitect.equals("1")) {
+					CustomGame[i1][j1] = 1;
+				}
+				else if (commandArchitect.equals("2")) {
+					CustomGame[i1][j1] = 2;
+				}
+				else {
+					if (j1 == 0) {
+						j1 = 7;
+						i1--;
+					}
+					else {
+						j1--;
+					}
+					System.out.println("Unknown command!");
+					
+					sc.nextLine();
+				}
+				if ((i1 == 7 && j1 == 7) && CustomGame[7][7] != 9) {
+					return true;
+				}
+			}
+		}
+		System.out.println("Test");
+		return false;
+	}
+	
+	
 }
 
