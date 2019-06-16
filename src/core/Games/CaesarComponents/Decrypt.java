@@ -13,6 +13,8 @@ package core.Games.CaesarComponents;
 
 import java.util.Scanner;
 
+import core.RefreshPage;
+
 public class Decrypt {
 	private Scanner sc;
 //	public Decrypt(Boolean decryptMode, String Cipher) {
@@ -24,6 +26,7 @@ public class Decrypt {
 		final String smallAlpha = "abcdefghijklmnopqrstuvwxyz";
 		final String numeric = "0123456789";
 		sc = new Scanner(System.in);
+		new RefreshPage();
 		System.out.println("Enter your encrypted string. (0 to exit)");
 		System.out.println();
 		System.out.print(">>> ");

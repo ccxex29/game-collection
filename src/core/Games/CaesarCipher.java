@@ -39,7 +39,9 @@ public class CaesarCipher{
 		sc = new Scanner(System.in);
 		do {
 			new RefreshPage();
-			System.out.print("How many shifts? (Maximum 25) : ");
+			System.out.print("How many shifts? (Maximum 25) ");
+			System.out.println();
+			System.out.print(">>> ");
 			try {
 				shifts = sc.nextInt(); //prompts user for caesar cipher encryption shift
 			} 
