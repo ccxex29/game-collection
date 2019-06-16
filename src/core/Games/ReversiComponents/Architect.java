@@ -1,5 +1,5 @@
 package core.Games.ReversiComponents;
 
-public class Init {
-	
+public class Architect {
+
 }

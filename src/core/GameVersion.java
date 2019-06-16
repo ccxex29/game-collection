@@ -11,7 +11,7 @@
 package core;
 
 public class GameVersion{
-	private double version = 0.03D;
+	private double version = 0.05D;
 	private String author1 = "Louis Raymond";
 	private String author2 = "Christina Angelia";
 	private String nim1 = "2201849535";

@@ -13,11 +13,17 @@ package core.Games.ReversiComponents;
 import java.util.Scanner;
 import core.RefreshPage;
 
-public class Main extends Board{
+public class Main implements Board{
 	private Scanner sc;
 	String inputReversi = "";
 	int whiteMoves = 0;
 	int blackMoves = 0;
+	char whiteDisk = 'W';
+	char blackDisk = 'B';
+	
+	int gameOverPoints = 0;
+	int whitePoints = 0;
+	int blackPoints = 0;
 	Boolean turn = false; // false = black; true = white
 	/*
 	 * Starting Board to be used for new game.
@@ -70,11 +76,15 @@ public class Main extends Board{
 			{0,0,0,0,0,0,0,0}, // 8
 	};
 	
-	public Main(){
+	public Main(int mode){
 		sc = new Scanner (System.in);
-		boardGame = StartGame;
+		if (mode == 1)
+			boardGame = StartGame;
+		else
+			boardGame = CustomGame;
 		whiteMoves = 0;
 		blackMoves = 0;
+		
 		turn = false; // false(0) = black; true(1) = white
 		
 		Boolean haveZero = false;
@@ -88,9 +98,14 @@ public class Main extends Board{
 				System.out.print(">>> ");
 				inputReversi = sc.nextLine();
 				isValid = validityCheck(inputReversi);
-				if (!isValid) {
+				if (!isValid && !inputReversi.equals("invert")) {
 					System.out.println("Illegal input or move!");
 					sc.nextLine();
+				}
+				if (inputReversi.equals("invert")) {
+					blackDisk ^= whiteDisk;
+					whiteDisk ^= blackDisk;
+					blackDisk ^= whiteDisk;
 				}
 			}while (inputReversi != "0" && !isValid); // validity check 
 			if (!inputReversi.equals("0")) {
@@ -110,12 +125,33 @@ public class Main extends Board{
 				turn = !turn; // Flips the turn
 			}
 		}while(!inputReversi.equals("0") && haveZero);
+		
 	}
 	
 	@Override
 	public Boolean board() {
 		Boolean haveZero = false;
+		blackPoints = -2;
+		whitePoints = -2;
+		
+		for (int i = 0; i < 8; i++) {
+			for (int j = 0; j < 8; j++) {
+				if (boardGame[i][j] == 1) {
+					blackPoints++;
+				}
+				else if (boardGame[i][j] == 2) {
+					whitePoints++;
+				}
+			}
+		}
+		
+		if (blackPoints < 0) 
+			blackPoints = 0;
+		if (whitePoints < 0)
+			whitePoints = 0;
+		
 		TopBottom(true);
+		System.out.printf("%s%c Black Disk - %c White Disk\n", "    ", blackDisk, whiteDisk);
 		for (int i = 0; i < 8; i++) {
 			System.out.print(i+1);
 			for (int j = 0; j < 8; j++) {
@@ -124,25 +160,26 @@ public class Main extends Board{
 					haveZero = true;
 				}
 				else if (boardGame[i][j] == 1)
-					System.out.print("B");
+					System.out.print(blackDisk);
 				else
-					System.out.print("W");
+					System.out.print(whiteDisk);
 			}
 			System.out.print("#    ");
 			switch (i) {
-				case 1: System.out.printf("%s%9c %d", "User", ':', 10); break;
-				case 2: System.out.print("Black Moves : " + blackMoves); break;
-				case 3: System.out.print("White Moves : " + whiteMoves); break;
-				case 4: if (turn)
+				case 1: System.out.printf("%-13s%c %s", "User", ':', "Anonymous"); break;
+				case 3: if (turn)
 							System.out.print("White's Turn!");
 						else 
 							System.out.print("Black's Turn!");
 						break;
-				case 5: System.out.print("HINT:" + showHint((int)(Math.random()*10)));
+				case 4: System.out.printf("%-13s%c %-5d%-13s%c %d","Black Moves", ':', blackMoves, "Black Points", ':', blackPoints); break;
+				case 5: System.out.printf("%-13s%c %-5d%-13s%c %d","White Moves", ':', whiteMoves, "White Points", ':', whitePoints); break; 
+				case 7: System.out.printf("%-13s%c %s","MOTD", ':', showHint((int)(Math.random()*11)));
 			}
 			System.out.println();
 		}
 		TopBottom(false);
+		System.out.println();
 		if (haveZero)
 			return true;
 		else
@@ -158,13 +195,15 @@ public class Main extends Board{
 				System.out.print("#");
 			}		
 		}
-		System.out.println();
 	}
 	
 	private Boolean validityCheck(String input) {
 		// Case Input is 0
 		if (input.equals("0")) {
 			return true;
+		}
+		if (input.equals("invert")) {
+			return false;
 		}
 		// Case Input is out of bound
 		if (input.length() == 2) {
@@ -409,7 +448,7 @@ public class Main extends Board{
 				}
 				else { 			// for unsuccessful swap
 					tempState = false;
-					diag1State = false;
+					diag1State_1 = false;
 					for (int i2 = yValid, j2 = xValid; i2 < 8 && j2 >= 0; i2++, j2--) {
 						if (boardGame[i2][j2] == 5) {
 							boardGame[i2][j2] = Opponent;
@@ -442,8 +481,7 @@ public class Main extends Board{
 				}
 				else { 			// for unsuccessful swap
 					tempState = false;
-					if (!diag1State)
-						diag1State = false;
+					diag1State_2 = false;
 					for (int i2 = yValid, j2 = xValid; i2 >= 0 && j2 < 8; i2--, j2++) {
 						if (boardGame[i2][j2] == 5) {
 							boardGame[i2][j2] = Opponent;
@@ -486,7 +524,7 @@ public class Main extends Board{
 				}
 				else { 			// for unsuccessful swap
 					tempState = false;
-					diag2State = false;
+					diag2State_1 = false;
 					for (int i2 = yValid, j2 = xValid; i2 < 8 && j2 < 8; i2++, j2++) {
 						if (boardGame[i2][j2] == 5) {
 							boardGame[i2][j2] = Opponent;
@@ -519,8 +557,7 @@ public class Main extends Board{
 				}
 				else { 			// for unsuccessful swap
 					tempState = false;
-					if (!diag1State)
-						diag2State = false;
+					diag2State_2 = false;
 					for (int i2 = yValid, j2 = xValid; i2 >= 0 && j2 >= 0; i2--, j2--) {
 						if (boardGame[i2][j2] == 5) {
 							boardGame[i2][j2] = Opponent;
@@ -553,7 +590,8 @@ public class Main extends Board{
 			case 6: return "I like trains";
 			case 7: return "This game was made using java";
 			case 8: return "The game is not very optimal codewise.";
-			case 9: return "Alright Alright Alright";
+			case 9: return "Alright Alright Alright!";
+			case 10: return "If black and white seems off, you can try entering \"invert\" on the command.";
 		}
 		return "No Hint Available";
 	}

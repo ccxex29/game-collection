@@ -17,7 +17,7 @@ public class GamesMenu{
 	private Scanner sc;
 	void getGames() {
 		new RefreshPage();
-		String gameselTitle = ("Game Selections" + " | " + "Welcome, " + "UserName"); // Greets User / Anonymous
+		String gameselTitle = ("Game Selections" + " | " + "Welcome, " + "Anonymous"); // Greets User / Anonymous
 		System.out.println(gameselTitle);
 		for (int i = 0; i < gameselTitle.length(); i++) {
 			System.out.print("=");
