@@ -18,6 +18,7 @@ public class Reversi {
 	public Reversi() {
 		sc = new Scanner(System.in);
 		new Main();
+		System.out.print("Game over!");
 		sc.nextLine();
 	}
 }

@@ -11,6 +11,7 @@
 package core;
 
 import java.util.Scanner;
+import core.RefreshPage;
 
 public class Main {
 	public static final int availableThreads = Runtime.getRuntime().availableProcessors(); /*
@@ -36,6 +37,8 @@ public class Main {
 			handleSelection(mainSelector);
 		}while(mainSelector != 3);
 		sc.close(); // Close Scanner before program termination
+		new RefreshPage();
+		System.out.println("Game shutdown. Bye bye bye!");
 	}
 
 	public static void main(String[] args) {
