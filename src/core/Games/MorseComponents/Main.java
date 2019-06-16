@@ -11,15 +11,27 @@
 package core.Games.MorseComponents;
 
 import java.util.Scanner;
+import java.util.Vector;
 
 public class Main {
 	private Scanner sc;
+	private String kata="";
 	private String encrypt="";
-	public Main(String kata) {
-		// TODO Auto-generated constructor stub
-		sc= new Scanner (System.in);
-		int i;
-		for(i=0;i<kata.length();i++)
+	
+	Vector<Encrypt> ven= new Vector<>();
+	
+	public void encrypt()
+	{
+		do
+		{
+			System.out.println("Insert String: ");
+			kata = sc.nextLine();
+			Encrypt en = new Encrypt(kata);
+			ven.add(new Encrypt(kata));
+		}while(kata.isEmpty()==true);
+		
+		
+		for(int i=0;i<kata.length();i++)
 		{
 			if(kata.charAt(i)=='A'||kata.charAt(i)=='a')
 			{
@@ -172,5 +184,33 @@ public class Main {
 		}
 		System.out.println(encrypt);
 		sc.nextLine();
+	}
+	
+	
+	public void decrypt()
+	{
+		System.out.println("Insert String [every charcter please separated with 1 space for every word please separated with 2 space]:  ");
+		kata=sc.nextLine();
+		
+		
+	}
+	
+	
+	
+	public Main(int choose) {
+		// TODO Auto-generated constructor stub
+		sc= new Scanner (System.in);
+		int i;
+		
+		switch (choose)
+		{
+		
+			case 1:
+				encrypt();
+				break;
+			case 2:
+				decrypt();
+				break;
+		}
 	}
 }
