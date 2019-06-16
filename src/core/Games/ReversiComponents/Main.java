@@ -96,18 +96,20 @@ public class Main implements Board{
 				new RefreshPage();
 				haveZero = board();
 				System.out.print(">>> ");
-				inputReversi = sc.nextLine();
-				isValid = validityCheck(inputReversi);
-				if (!isValid && !inputReversi.equals("invert")) {
-					System.out.println("Illegal input or move!");
-					sc.nextLine();
+				if (haveZero) {
+					inputReversi = sc.nextLine();
+					isValid = validityCheck(inputReversi);
+					if (!isValid && !inputReversi.toLowerCase().equals("invert")) {
+						System.out.println("Illegal input or move!");
+						sc.nextLine();
+					}
+					if (inputReversi.toLowerCase().equals("invert")) {
+						blackDisk ^= whiteDisk;
+						whiteDisk ^= blackDisk;
+						blackDisk ^= whiteDisk;
+					}
 				}
-				if (inputReversi.equals("invert")) {
-					blackDisk ^= whiteDisk;
-					whiteDisk ^= blackDisk;
-					blackDisk ^= whiteDisk;
-				}
-			}while (inputReversi != "0" && !isValid); // validity check 
+			}while (inputReversi != "0" && !isValid && haveZero); // validity check 
 			if (!inputReversi.equals("0")) {
 				if (inputReversi.charAt(0) > 96)
 					x = (int)(inputReversi.charAt(0)-97);
@@ -182,8 +184,7 @@ public class Main implements Board{
 		System.out.println();
 		if (haveZero)
 			return true;
-		else
-			return false;
+		return false;
 	}
 
 	@Override
@@ -202,7 +203,7 @@ public class Main implements Board{
 		if (input.equals("0")) {
 			return true;
 		}
-		if (input.equals("invert")) {
+		if (input.toLowerCase().equals("invert")) {
 			return false;
 		}
 		// Case Input is out of bound
