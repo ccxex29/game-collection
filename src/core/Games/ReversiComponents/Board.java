@@ -12,6 +12,6 @@
 package core.Games.ReversiComponents;
 
 public interface Board {
-	public abstract Boolean board();
+	public abstract Boolean board(String userName);
 	public abstract void TopBottom(Boolean arg);
 }

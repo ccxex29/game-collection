@@ -41,11 +41,11 @@ public class RegLogin {
 		return selectionvar;
 	}
 	
-	void reglog() {
+	void reglog(Users userDataAccess) {
 		switch(selection()) {
-			case 1: new RegistUser();
+			case 1: userDataAccess.RegistUser();
 					break;
-			case 2: new LoginUser();
+			case 2: userDataAccess.LoginUser();
 					break;
 		}
 	}

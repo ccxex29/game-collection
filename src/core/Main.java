@@ -13,6 +13,7 @@ package core;
 
 import java.util.Scanner;
 import core.RefreshPage;
+import core.User.Users;
 
 public class Main {
 	public static final int availableThreads = Runtime.getRuntime().availableProcessors(); /*
@@ -20,6 +21,7 @@ public class Main {
 																							* This will be imported in other package classes if needed
 																							* One of the need is to ensure the multithreading efficiency
 																							*/
+	public Users userDataAccess = new Users();
 	private Scanner sc; // Make new Scanner variable named "sc".
 	public Main() { // Default constructor initiated from main function
 		int mainSelector = 0; // Default Selector Value 
@@ -52,10 +54,10 @@ public class Main {
 	void handleSelection(int sel) { // Switch case function from Main()
 		switch (sel) {
 		case 1:
-			(new RegLogin()).reglog(); // core.RegLogin.reglog() -> Opens the function from a class which is responsible to registration and login
+			(new RegLogin()).reglog(userDataAccess); // core.RegLogin.reglog() -> Opens the function from a class which is responsible to registration and login
 			break;
 		case 2:
-			(new GamesMenu()).gamesMenu(); // core.GamesMenu.gamesMenu() -> Opens the function from a class which is responsible to games
+			(new GamesMenu()).gamesMenu(userDataAccess.UserStore); // core.GamesMenu.gamesMenu() -> Opens the function from a class which is responsible to games
 			break;
 		}
 	}

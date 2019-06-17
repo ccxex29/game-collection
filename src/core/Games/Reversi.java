@@ -10,15 +10,19 @@
  */
 
 package core.Games;
+import static core.User.Users.userActive;
+
 import java.util.Scanner;
+import java.util.Vector;
 
 import core.Games.ReversiComponents.*;
+import core.User.UserCredentials;
 import core.RefreshPage;
 
 public class Reversi {
 	int selReversiMode = -1;
 	private Scanner sc;
-	public Reversi() {
+	public Reversi(Vector<UserCredentials> UserStore) {
 		sc = new Scanner(System.in);
 		do {
 			new RefreshPage();
@@ -36,11 +40,14 @@ public class Reversi {
 			}
 		}while(selReversiMode < 0 && selReversiMode > 2);
 		if (selReversiMode == 1) {
-			new Main(1);
+			new Main(1, UserStore);
+			if (!UserStore.isEmpty()) {
+				UserStore.get(userActive).setPoint(UserStore.get(userActive).getPoint()+1);
+			}
 			System.out.print("Game over!");			
 		} 
 		else if (selReversiMode == 2){
-			new Main(2);
+			new Main(2, UserStore);
 			System.out.print("Game over!");	
 		}
 		

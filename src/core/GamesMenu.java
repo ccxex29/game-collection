@@ -12,13 +12,23 @@
 package core;
 
 import java.util.Scanner;
+import java.util.Vector;
+
 import core.Games.*;
+import core.User.UserCredentials;
+import static core.User.Users.userActive;
 
 public class GamesMenu{
 	private Scanner sc;
-	void getGames() {
+	void getGames(Vector<UserCredentials> UserStore) {
 		new RefreshPage();
-		String gameselTitle = ("Game Selections" + " | " + "Welcome, " + "Anonymous"); // Greets User / Anonymous
+		String userName = "";
+		if (UserStore.isEmpty()) {
+			userName = "Anonymous";
+		}
+		else
+			userName = UserStore.get(userActive).getName();
+		String gameselTitle = ("Game Selection" + " | " + "Welcome, " + userName); // Greets User / Anonymous
 		System.out.println(gameselTitle);
 		for (int i = 0; i < gameselTitle.length(); i++) {
 			System.out.print("=");
@@ -40,11 +50,11 @@ public class GamesMenu{
 		System.out.println("0. Exit Selection Menu");
 		System.out.print(">>> ");
 	}
-	int selection() { // Selection on Register/Login
+	int selection(Vector<UserCredentials> UserStore) { // Selection on Register/Login
 		int selectionvar = 999;//variable to store user input
 		sc = new Scanner (System.in); // 
 		do {
-			getGames();
+			getGames(UserStore);
 			try {
 				selectionvar = sc.nextInt();
 			}
@@ -55,12 +65,12 @@ public class GamesMenu{
 		} while(selectionvar > 5 || selectionvar < 0);
 		return selectionvar;
 	}
-	void gamesMenu() {
+	void gamesMenu(Vector<UserCredentials> UserStore) {
 		int sel = 0;
 		do {
-			sel = selection();
+			sel = selection(UserStore);
 			switch(sel) {
-				case 1: new Reversi();
+				case 1: new Reversi(UserStore);
 						break;
 				case 2: new CaesarCipher();
 						break;

@@ -1,50 +1,70 @@
+/*
+ * Object Oriented Programming Project LK01
+ * Theme:
+ * Game Collection
+ * Team:
+ * Louis Raymond (2201849535)
+ * Christina Angelia (2201728004)
+ * Lecturer : 
+ * Livia Ashianti (D5358)
+ */
+
 package core.User;
 
 import java.util.Vector;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import core.RefreshPage;
+import static core.User.Users.userActive;
+
 import java.util.Scanner;
 
 public class RegistUser {
-//	private UserCredentials[] UserStore = new UserCredentials[64];
-	@SuppressWarnings("unchecked")
-	private Vector<RegistDetails> UserStore = new Vector<RegistDetails>(64);
 	private String UserName;
-	private String UserEmail;
-	Integer RegIDTemp = 0; // --> Registration ID will use hashing technique. The Registration ID will consists of 8 maximum digits
-	private String UserID;
-	private int hashing;
+	
+//	private Boolean validReport = false;
 	private Scanner sc;
-	public RegistUser() {
-		hashing = 0;
+	public RegistUser(Vector<UserCredentials> UserStore) {
+//		hashing = 0;
 		sc = new Scanner(System.in);
-		System.out.println("Enter Name: ");
-		UserName = sc.nextLine();
-		System.out.println("Enter Email: ");
-		UserEmail = sc.nextLine();
-		for (int i = 0; i < UserName.length(); i++) {
-			hashing += (int)UserName.charAt(i);
+		do {
+			new RefreshPage();
+			System.out.print("Enter Username (5-20 chars): ");
+			UserName = sc.nextLine();
+		}while(validCheck(UserName, UserStore));
+		if (!UserName.equals("0")) {
+			UserStore.add(new UserCredentials(UserName));
+			
+			new RefreshPage();
+			userActive = UserStore.size()-1;
+			System.out.println("Welcome to the Game, " + UserStore.get(UserStore.size()-1).getName() + "!");
+			sc.nextLine();
+			
 		}
-		hashing %= 64;
-		RegIDTemp = (int) (Math.random()*64) + 1;
-		System.out.println(UserStore.get(hashing).getSize());
-		if (hashing < 10)
-			UserID = "0" + hashing;
-		if (UserStore.indexOf(UserStore, hashing) < 9)
-			UserID = UserID + "000" + UserStore.get(hashing).getSize();
-		else if (UserStore.get(hashing).getSize() < 99)
-			UserID = UserID + "00" + UserStore.get(hashing).getSize();
-		else if (UserStore.get(hashing).getSize() < 999)
-			UserID = UserID + "0" + UserStore.get(hashing).getSize();
-		else
-			UserID = UserID + UserStore.get(hashing).getSize();
-		UserID = UserID + RegIDTemp;
-		System.out.println(UserID);
-		sc.nextLine();
-		UserStore.get(hashing).addUser(UserID, UserName, UserEmail);
-		sc.nextLine();
 	}
-	public void VectorInit () {
-		for (int i = 0; i < 64; i++) {
-			UserStore.add(null);
+	private Boolean validCheck(String userName, Vector<UserCredentials> UserStore) {
+		Pattern patternStr = Pattern.compile("[a-zA-Z0-9]");
+		Matcher matchStr = patternStr.matcher(userName);
+		if (userName.equals("0"))
+			return false;
+		else if (!matchStr.find()) {
+			return true;
 		}
+		else if (userName.contains(" "))
+			return true;
+		else if (userName.length() < 5 || userName.length() > 20 ) {
+			return true;
+		}
+		else if (!UserStore.isEmpty()) {
+			for (int i = 0; i < UserStore.size(); i++) {
+				if (UserStore.get(i).getName().equals(userName)) {
+					return true;
+				}
+			}
+		}
+			
+		return false;
+		
 	}
 }

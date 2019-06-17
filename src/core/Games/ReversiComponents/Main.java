@@ -12,7 +12,11 @@
 package core.Games.ReversiComponents;
 
 import java.util.Scanner;
+import java.util.Vector;
+
 import core.RefreshPage;
+import core.User.UserCredentials;
+import static core.User.Users.userActive;
 
 public class Main implements Board{
 	private Scanner sc;
@@ -21,6 +25,7 @@ public class Main implements Board{
 	int blackMoves = 0;
 	char whiteDisk = 'W';
 	char blackDisk = 'B';
+	char emptyDisk = '█';
 	
 	int gameOverPoints = 0;
 	int whitePoints = 0;
@@ -78,7 +83,7 @@ public class Main implements Board{
 			{0,0,0,0,0,0,0,0}, // 8
 	};
 	
-	public Main(int mode){
+	public Main(int mode, Vector<UserCredentials> UserStore){
 		sc = new Scanner (System.in);
 		if (mode == 1)
 			boardGame = StartGame;
@@ -91,6 +96,12 @@ public class Main implements Board{
 		
 		turn = false; // false(0) = black; true(1) = white
 		
+		String userName = "";
+		if (UserStore.isEmpty())
+			userName = "Anonymous";
+		else
+			userName = UserStore.get(userActive).getName();
+		
 		Boolean haveZero = false;
 		Boolean isValid = false;
 		int x = 0;
@@ -99,7 +110,7 @@ public class Main implements Board{
 			do {
 				do {
 					new RefreshPage();
-					haveZero = board();
+					haveZero = board(userName);
 					System.out.print(">>> ");
 					if (haveZero) {
 						inputReversi = sc.nextLine();
@@ -133,10 +144,12 @@ public class Main implements Board{
 				}
 			}while(!inputReversi.equals("0") && haveZero);
 		}
+		
+		
 	}
 	
 	@Override
-	public Boolean board() {
+	public Boolean board(String userName) {
 		Boolean haveZero = false;
 		blackPoints = -2;
 		whitePoints = -2;
@@ -163,7 +176,7 @@ public class Main implements Board{
 			System.out.print(i+1);
 			for (int j = 0; j < 8; j++) {
 				if (boardGame[i][j] == 0) {
-					System.out.print("█");
+					System.out.print(emptyDisk); // Prints empty block
 					haveZero = true;
 				}
 				else if (boardGame[i][j] == 1)
@@ -173,7 +186,7 @@ public class Main implements Board{
 			}
 			System.out.print("#    ");
 			switch (i) {
-				case 1: System.out.printf("%-13s%c %s", "User", ':', "Anonymous"); break;
+				case 1: System.out.printf("%-13s%c %s", "User", ':', userName); break;
 				case 3: if (turn)
 							System.out.print("White's Turn!");
 						else 
@@ -181,7 +194,7 @@ public class Main implements Board{
 						break;
 				case 4: System.out.printf("%-13s%c %-5d%-13s%c %d","Black Moves", ':', blackMoves, "Black Points", ':', blackPoints); break;
 				case 5: System.out.printf("%-13s%c %-5d%-13s%c %d","White Moves", ':', whiteMoves, "White Points", ':', whitePoints); break; 
-				case 7: System.out.printf("%-13s%c %s","MOTD", ':', showHint((int)(Math.random()*11)));
+				case 7: System.out.printf("%-13s%c %s","MOTD", ':', showHint((int)(Math.random()*12)));
 			}
 			System.out.println();
 		}
@@ -225,14 +238,8 @@ public class Main implements Board{
 					xValid = (int)(input.charAt(0)-65);
 				yValid = (int)(input.charAt(1)-49);
 					
-				System.out.printf("%d %d", xValid, (int)yValid);
-					
+				System.out.printf("Attempted array placement : X%d Y%d, ", xValid, (int)yValid);
 				
-				
-//				 if (turn)
-//					 boardGame[yValid][xValid] = 4;
-//				 else 
-//					 boardGame[yValid][xValid] = 3;
 					 
 				if (boardGame[yValid][xValid] != 0) {
 					return false;
@@ -573,7 +580,7 @@ public class Main implements Board{
 				if(!(diag2State_1 || diag2State_2)) 
 					diag2State = false;
 				
-				System.out.println(horizState + " " + vertState + " " + diag1State + " " + diag2State);
+				System.out.println("Validity Check: " + horizState + " " + vertState + " " + diag1State + " " + diag2State);
 				
 				if (horizState || vertState || diag1State || diag2State)
 					return true;
@@ -587,17 +594,18 @@ public class Main implements Board{
 	private String showHint(int index) {
 		// TODO Auto-generated method stub
 		switch(index) {
-			case 0: return "Input 0 to finish game";
+			case 0: return "Enter 0 to finish game.";
 			case 1: return "You can start a custom game";
-			case 2: return "The game is buggy";
+			case 2: return "The game is buggy.";
 			case 3: return "Oh yeah yeah";
-			case 4: return "Reversi is just another name of Othello";
-			case 5: return "According to wikipedia, Othello existed since 1883";
-			case 6: return "I like trains";
-			case 7: return "This game was made using java";
+			case 4: return "Reversi is just another name of Othello.";
+			case 5: return "According to wikipedia, Othello existed since 1883.";
+			case 6: return "I like trains :)";
+			case 7: return "This game was made using java.";
 			case 8: return "The game is not very optimal codewise.";
 			case 9: return "Alright Alright Alright!";
 			case 10: return "If black and white seems off, you can try entering \"invert\" on the command.";
+			case 11: return "Minimum terminal size is landscape 104x11.";
 		}
 		return "No Hint Available";
 	}
@@ -628,7 +636,7 @@ public class Main implements Board{
 						case 3: System.out.print("You are editing the custom Reversi Board!");break;
 						case 4: System.out.print("Enter \'c\' to undo last change");break;
 						case 5: System.out.print("Enter 0 for empty block, 1 for black disk, and 2 for white disk"); break; 
-						case 7: System.out.print("Enter \'exit\' to exit menu");
+						case 7: System.out.print("Enter \'exit\' to exit Architect");
 					}
 					System.out.println();
 				}
@@ -636,10 +644,10 @@ public class Main implements Board{
 				System.out.println();
 				System.out.print(">>> ");
 				commandArchitect = sc.nextLine();
-				if (commandArchitect.equals("exit")) {
+				if (commandArchitect.toLowerCase().equals("exit")) {
 					return false;
 				} 
-				else if (commandArchitect.equals("c")){
+				else if (commandArchitect.toLowerCase().equals("c")){
 					if (i1 == 0 && j1 == 0) {
 						System.out.println("Cannot undo further");
 						if (j1 == 0) {
@@ -691,10 +699,7 @@ public class Main implements Board{
 				}
 			}
 		}
-		System.out.println("Test");
 		return false;
 	}
-	
-	
 }
 
