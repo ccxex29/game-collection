@@ -11,27 +11,43 @@
 package core.Games;
 
 import java.util.Scanner;
-
 import core.Games.MorseComponents.Main;
+import core.User.RegistDetails;
 
 public class Morse {
 	private Scanner sc;
-	private String kata;
+	int choose=-1;
+	public String Username="";
+	public String UserEmail="";
+	RegistDetails user = new RegistDetails(UserEmail, UserEmail);
+	public void viewuser()
+	{
+		System.out.println("User: "+user.getUsername());
+	}
 	public Morse(){
+		System.out.println("Morse");
 		sc = new Scanner(System.in);
-	
+		viewuser();
 		ViewMenu();
 	}
 	public void ViewMenu()
 	{
-		System.out.println("Morse encrypt");
 		do
 		{
-			System.out.println("Insert String[1-100 word(s)]: ");
-			kata = sc.nextLine();
-		}
-		while(kata.length()<1||kata.length()>100);
-		new Main(kata);
+			do {
+			System.out.println("Morse Menu");
+		System.out.println("1. Encrypted");
+		System.out.println("2. Decrypted");
+		System.out.println("0. Back");
+		System.out.println(">>: ");
+		choose=sc.nextInt();
+//		sc.nextLine();
+		new Main(choose);
+		} while(choose<0||choose>2);
+		}while (choose!=0);
+		
+
+		
 		
 		
 	}

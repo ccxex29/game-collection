@@ -13,22 +13,27 @@ package core.Games.MorseComponents;
 import java.util.Scanner;
 import java.util.Vector;
 
+
 public class Main {
 	private Scanner sc;
 	private String kata="";
 	private String encrypt="";
+	private String decrypt;
 	
+	int count=0;
+
 	Vector<Encrypt> ven= new Vector<>();
-	
+
 	public void encrypt()
 	{
 		do
 		{
-			System.out.println("Insert String: ");
+			System.out.println("Insert String[1-100 character(s)]: ");
 			kata = sc.nextLine();
+			sc.nextLine();
 			Encrypt en = new Encrypt(kata);
 			ven.add(new Encrypt(kata));
-		}while(kata.isEmpty()==true);
+		}while(kata.length()<1||kata.length()>100);
 		
 		
 		for(int i=0;i<kata.length();i++)
@@ -189,9 +194,142 @@ public class Main {
 	
 	public void decrypt()
 	{
-		System.out.println("Insert String [every charcter please separated with 1 space for every word please separated with 2 space]:  ");
+		System.out.println("Insert String [please separate each character with 1 space and space with 2 spaces]:  ");
 		kata=sc.nextLine();
-		
+		for(int i=0;i<=kata.length();i=count)
+		{
+			if(kata.charAt(i)=='.'&&kata.charAt(i+1)=='-')
+			{
+				count =count+3;
+				decrypt=decrypt+"A";
+				
+			}
+			if(kata.charAt(i)=='-'&&kata.charAt(i+1)=='.'&&kata.charAt(i+2)=='.'&&kata.charAt(i+3)=='.')
+			{
+				count =count+5;
+				decrypt=decrypt+"B";
+				
+			}
+			if(kata.charAt(i)=='-'&&kata.charAt(i+1)=='.'&&kata.charAt(i)=='-'&&kata.charAt(i+1)=='.')
+			{
+				count=count+5;
+				decrypt=decrypt+"C";
+			}
+			if(kata.charAt(i)=='-'&&kata.charAt(i+1)=='.'&&kata.charAt(i+2)=='.')
+			{
+				count=count+4;
+				decrypt=decrypt +"D";
+			}
+			if(kata.charAt(i)=='.')
+			{
+				count=count+2;
+				decrypt=decrypt+"E";
+			}
+			if(kata.charAt(i)=='.'&&kata.charAt(i+1)=='.'&&kata.charAt(i+2)=='-'&&kata.charAt(i+3)=='.')
+			{
+				count=count+5;
+				decrypt = decrypt +"F";
+				
+			}
+			if(kata.charAt(i)=='-'&&kata.charAt(i+1)=='-'&&kata.charAt(i+2)=='.')
+			{
+				count =count +4;
+				decrypt =decrypt+"G";
+			}
+			if(kata.charAt(i)=='.'&&kata.charAt(i+1)=='.'&&kata.charAt(i+2)=='.'&&kata.charAt(i+3)=='.')
+			{
+				count=count+4;
+				decrypt=decrypt+"H";
+			}
+			if(kata.charAt(i)=='.'&& kata.charAt(i+1)=='.')
+			{
+				count =count+3;
+				decrypt=decrypt+"I";
+			}
+			if(kata.charAt(i)=='.'&&kata.charAt(i+1)=='-'&&kata.charAt(i+2)=='-'&&kata.charAt(i+3)=='-')
+			{
+				count=count +5;
+				decrypt=decrypt+"J";
+			}
+			if(kata.charAt(i)=='-'&&kata.charAt(i+1)=='.'&&kata.charAt(i+2)=='-')
+			{
+				count=count +4;
+				decrypt =decrypt+"K";
+			}
+			if(kata.charAt(i)=='.'&&kata.charAt(i+1)=='-'&&kata.charAt(i+2)=='.'&&kata.charAt(i+3)=='.')
+			{
+				count=count+5;
+				decrypt=decrypt+"L";
+			}
+			if(kata.charAt(i)=='-'&&kata.charAt(i+1)=='-')
+			{
+				count =count+3;
+				decrypt =decrypt+"M";
+			}
+			if(kata.charAt(i)=='-'&&kata.charAt(i+1)=='.')
+			{
+				count =count +3;
+				decrypt =decrypt+"N";
+			}
+			if(kata.charAt(i)=='-'&&kata.charAt(i+1)=='-'&&kata.charAt(i+2)=='-')
+			{
+				count =count +4;
+				decrypt =decrypt +"O";
+			}
+			if(kata.charAt(i)=='.'&&kata.charAt(i+1)=='-'&&kata.charAt(i+2)=='-'&&kata.charAt(i)=='.')
+			{
+				count =count+5;
+				decrypt=decrypt+"P";
+			}
+			if(kata.charAt(i)=='-'&&kata.charAt(i+1)=='-'&&kata.charAt(i+2)=='.'&&kata.charAt(i+3)=='-')
+			{
+				count =count+5;
+				decrypt =decrypt+"Q";
+			}
+			if(kata.charAt(i)=='.'&&kata.charAt(i+1)=='-'&&kata.charAt(i+2)=='.')
+			{
+				count =count +4;
+				decrypt =decrypt+"R";
+			}
+			if(kata.charAt(i)=='.'&&kata.charAt(i+1)=='.'&&kata.charAt(i+2)=='.')
+			{
+				count=count+4;
+				decrypt=decrypt+"S";
+			}
+			if(kata.charAt(i)=='-')
+			{
+				count=count+2;
+				decrypt=decrypt+"T";
+			}
+			if(kata.charAt(i)=='.'&&kata.charAt(i+1)=='.'&&kata.charAt(i+2)=='-')
+			{
+				count =count +4;
+				decrypt=decrypt+"U";
+			}
+			if(kata.charAt(i)=='.'&&kata.charAt(i+1)=='.'&&kata.charAt(i+2)=='.'&&kata.charAt(i+3)=='-')
+			{
+				count =count+5;
+				decrypt =decrypt+"V";
+			}
+			if (kata.charAt(i)=='.'&&kata.charAt(i+1)=='-'&&kata.charAt(i+2)=='-')
+			{
+				count =count+4;
+				decrypt=decrypt+"W";
+			}
+			if(kata.charAt(i)=='-'&&kata.charAt(i+1)=='.'&&kata.charAt(i+2)=='.'&&kata.charAt(i+3)=='-')
+			{
+				count=count+5;
+				decrypt=decrypt+"Y";
+			}
+			if (kata.charAt(i)=='-'&&kata.charAt(i+1)=='-'&&kata.charAt(i+2)=='.'&&kata.charAt(i+3)=='.')
+			{
+				count =count +5;
+				decrypt=decrypt+"Z";
+				
+			}
+		}
+		System.out.println(decrypt);
+		sc.nextLine();
 		
 	}
 	
@@ -200,15 +338,16 @@ public class Main {
 	public Main(int choose) {
 		// TODO Auto-generated constructor stub
 		sc= new Scanner (System.in);
-		int i;
 		
 		switch (choose)
 		{
 		
 			case 1:
+		
 				encrypt();
 				break;
 			case 2:
+			
 				decrypt();
 				break;
 		}

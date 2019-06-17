@@ -1,19 +1,28 @@
 package core.User;
 
-import java.util.Vector;
+
 
 public class RegistDetails {
-	private Vector<UserCredentials> RegDetails = new Vector <UserCredentials>();
-	
-	public RegistDetails() {
-		// TODO Auto-generated constructor stub
+	public String username;
+	public String useremail;
+	public RegistDetails(String username, String useremail) {
+		super();
+		this.username = username;
+		this.useremail = useremail;
+	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	public String getUseremail() {
+		return useremail;
+	}
+	public void setUseremail(String useremail) {
+		this.useremail = useremail;
 	}
 	
-	int getSize() {
-		return RegDetails.size();
-	}
 	
-	void addUser(String uID, String uName, String uEmail) {
-		RegDetails.add(new UserCredentials(uID, uName, uEmail));
-	}
+
 }
