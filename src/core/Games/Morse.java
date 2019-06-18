@@ -8,32 +8,57 @@
  * Lecturer : 
  * Livia Ashianti (D5358)
  */
+
 package core.Games;
 
 import java.util.Scanner;
 
-import core.Games.MorseComponents.Main;
+import core.RefreshPage;
+import core.Games.MorseComponents.Decrypt;
+import core.Games.MorseComponents.Encrypt;
+
+
 
 public class Morse {
 	private Scanner sc;
-	private String kata;
 	public Morse(){
 		sc = new Scanner(System.in);
-	
-		ViewMenu();
+		int selMorse = -1;
+		do {
+			new RefreshPage();
+			ViewMenu();
+			try {
+				selMorse = sc.nextInt();				
+			}
+			catch  (Exception e) {
+				selMorse = -1;
+			}
+		}while(selMorse < 0 || selMorse > 2);
+		switch(selMorse) {
+			case 1: new Encrypt();
+			case 2: new Decrypt();
+		}
 	}
 	public void ViewMenu()
 	{
-		System.out.println("Morse encrypt");
-		do
-		{
-			System.out.println("Insert String[1-100 word(s)]: ");
-			kata = sc.nextLine();
+		System.out.println("Welcome to Morse Encryptor/Decryptor!");
+		for (int i = 0; i < 36; i++) {
+			System.out.print("-");
 		}
-		while(kata.length()<1||kata.length()>100);
-		new Main(kata);
-		
-		
+		System.out.println();
+		System.out.println("1. Encrypt String");
+		System.out.println("2. Decrypt Morse");
+		System.out.println("0. Go Back");
+		for (int i = 0; i < 36; i++) {
+			System.out.print("-");
+		}
+		System.out.println();
+		System.out.println("Morse Dictionary is limited (No Prosign/Non-English)");
+		for (int i = 0; i < 36; i++) {
+			System.out.print("-");
+		}
+		System.out.println();
+		System.out.print(">>> ");
 	}
 	
 	

@@ -12,7 +12,8 @@
 package core;
 
 public class GameVersion{
-	private double version = 0.07D;
+	private double version = 0.10D;
+	private int buildSubVersion = 3;
 	private String author1 = "Louis Raymond";
 	private String author2 = "Christina Angelia";
 	private String nim1 = "2201849535";
@@ -32,6 +33,8 @@ public class GameVersion{
 	public String getNim2() {
 		return nim2;
 	}
-	
+	public int getBuildSubVersion() {
+		return buildSubVersion;
+	}
 	
 }

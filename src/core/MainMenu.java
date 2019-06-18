@@ -19,7 +19,7 @@ public class MainMenu {
 		// TODO Auto-generated constructor stub
 		new RefreshPage();
 		GameVersion gv = new GameVersion();
-		String gameMenuTitle = ("Game Collection Menu" + " v" + gv.getVersion() + " | " + "Available Threads: " + availableThreads);
+		String gameMenuTitle = String.format("Game Collection Menu v%.2f | Available Threads: %d", gv.getVersion(), availableThreads);
 		System.out.println(gameMenuTitle);
 		for (int i = 0; i < gameMenuTitle.length(); i++) {
 			System.out.print("=");
@@ -31,7 +31,7 @@ public class MainMenu {
 			System.out.print("-");
 		}
 		System.out.println();
-		System.out.println("1. Register/Login");
+		System.out.println("1. Manage Users");
 		System.out.println("2. Play Games");
 		System.out.println("3. Exit");
 		System.out.print(">>> ");

@@ -44,14 +44,15 @@ public class Reversi {
 			if (!UserStore.isEmpty()) {
 				UserStore.get(userActive).setPoint(UserStore.get(userActive).getPoint()+1);
 			}
-			System.out.print("Game over!");			
+			System.out.print("Game over!");	
+			sc.nextLine();
 		} 
 		else if (selReversiMode == 2){
 			new Main(2, UserStore);
 			System.out.print("Game over!");	
+			sc.nextLine();
 		}
 		
-		sc.nextLine();
 	}
 	
 	private void printCowSay() {
