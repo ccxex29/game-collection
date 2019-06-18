@@ -35,8 +35,8 @@ public class Morse {
 			}
 		}while(selMorse < 0 || selMorse > 2);
 		switch(selMorse) {
-			case 1: new Encrypt();
-			case 2: new Decrypt();
+			case 1: new Encrypt();break;
+			case 2: new Decrypt();break;
 		}
 	}
 	public void ViewMenu()
