@@ -11,7 +11,7 @@
 
 package core;
 
-import static core.Main.*;
+import static core.Main.availableThreads;
 
 
 public class MainMenu {

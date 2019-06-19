@@ -21,7 +21,7 @@ public class Main {
 																							* This will be imported in other package classes if needed
 																							* One of the need is to ensure the multithreading efficiency
 																							*/
-	public Users userDataAccess = new Users();
+	private Users userDataAccess = new Users();
 	private Scanner sc; // Make new Scanner variable named "sc".
 	public Main() { // Default constructor initiated from main function
 		int mainSelector = 0; // Default Selector Value 
@@ -45,9 +45,6 @@ public class Main {
 	}
 
 	public static void main(String[] args) {
-		/* Initialize Vector User */
-		
-		/* Main Constructor call */
 		new Main();
 	}
 	

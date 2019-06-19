@@ -18,7 +18,6 @@ import core.Games.MorseComponents.Decrypt;
 import core.Games.MorseComponents.Encrypt;
 
 
-
 public class Morse {
 	private Scanner sc;
 	public Morse(){

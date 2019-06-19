@@ -20,17 +20,17 @@ import static core.User.Users.userActive;
 
 public class Main implements Board{
 	private Scanner sc;
-	String inputReversi = "";
-	int whiteMoves = 0;
-	int blackMoves = 0;
-	char whiteDisk = 'W';
-	char blackDisk = 'B';
-	char emptyDisk = '█';
+	private String inputReversi = "";
+	private int whiteMoves = 0;
+	private int blackMoves = 0;
+	private char whiteDisk = 'W';
+	private char blackDisk = 'B';
+	private char emptyDisk = '█';
 	
 	int gameOverPoints = 0;
 	int whitePoints = 0;
 	int blackPoints = 0;
-	Boolean turn = false; // false = black; true = white
+	private Boolean turn = false; // false = black; true = white
 	/*
 	 * Starting Board to be used for new game.
 	 */

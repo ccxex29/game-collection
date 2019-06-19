@@ -11,7 +11,7 @@
 
 package core.Games;
 
-import static core.Main.*;
+import static core.Main.availableThreads;
 
 import java.lang.management.ManagementFactory;
 import java.net.InetAddress;
@@ -23,7 +23,6 @@ import core.RefreshPage;
 public class SystemInfo {
 	private Scanner sc;
 	public SystemInfo() {
-		// TODO Auto-generated constructor stub
 		sc = new Scanner(System.in);
 //		if (Runtime.getRuntime().maxMemory() == Long.MAX_VALUE) 
 //			System.out.println("No Limit");

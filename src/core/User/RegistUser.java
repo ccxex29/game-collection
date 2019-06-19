@@ -23,10 +23,8 @@ import java.util.Scanner;
 public class RegistUser {
 	private String UserName;
 	
-//	private Boolean validReport = false;
 	private Scanner sc;
 	public RegistUser(Vector<UserCredentials> UserStore) {
-//		hashing = 0;
 		sc = new Scanner(System.in);
 		do {
 			new RefreshPage();
